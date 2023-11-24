@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <style>
+          body, html {
+            height: 100%;
+            font-family: 'Arial', Helvetica, sans-serif;
+            background-color: black;
+            margin: 0;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        .bg-img {
+            background-image: url("img1.webp");
+            height: 90%;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            position: relative;
+        }
+
+        .container {
+            position: absolute;
+            left: 20px; /* Adjusted to place in the left corner */
+            margin: 20px;
+            max-width: 300px;
+            padding: 16px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+        }
+
+        form {
+            width: 100%;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+        }
+
+        input[type=text], input[type=password] {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #04AA6D;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            opacity: 0.8;
+        }
+
+        select {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        ul {
+            list-style-type: none;
+            line-height: 15pt;
+            overflow: hidden;
+            background-color: black;
+            margin: 0;
+            padding: 0;
+        }
+
+        li {
+            float: left;
+            font-size: 25px;
+            color: white;
+            padding: 16px;
+            text-align: center;
+        }
+
+        p {
+            left: 100px;
+            top: 150px;
+            font-family: 'Inter';
+            font-style: normal;
+            font-weight: 300;
+            font-size: 36px;
+            line-height: 100px;
+            color: white;
+        }
+
+        /* Add new styles for displaying validation messages */
+        .error-message {
+            color: #FF0000;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <ul>
+        <!-- Your existing navigation bar -->
+    </ul>
+
+    <div class="bg-img">
+        <p>Enjoy your food Everyday with us !</br></p>
+        <div class="container">
+            <form onsubmit="return validateForm()">
+                <h1>Login</h1>
+
+                <label for="email"><b>Email</b></label>
+                <input type="text" placeholder="Enter Email" name="email" id="email" required>
+
+                <label for="psw"><b>Password</b></label>
+                <input type="password" placeholder="Enter Password" name="psw" id="psw" required>
+                <div id="password-error" class="error-message"></div>
+
+                <label for="user"><b>Select User</b></label>
+                <select name="user" id="user">
+                    <option value="customer">Customer</option>
+                    <option value="ngo">NGO</option>
+                    <option value="restaurant">Restaurant</option>
+                </select>
+
+                <button type="button" class="btn1">Sign Up</button>
+                <button type="submit" class="btn">Login</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function validateForm() {
+            var email = document.getElementById('email').value;
+            var password = document.getElementById('psw').value;
+
+            // Basic email validation
+            var emailRegex = /^\S+@\S+\.\S+$/;
+            if (!emailRegex.test(email)) {
+                alert("Invalid email address");
+                return false;
+            }
+
+            // Enhanced password validation
+            var passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{6,}$/;
+            if (!passwordRegex.test(password)) {
+                document.getElementById('password-error').innerText = "Password must have at least 6 characters, one letter, one number, and one special character.";
+                return false;
+            } else {
+                document.getElementById('password-error').innerText = ""; // Clear previous error message
+            }
+
+            // Simulate successful login and redirect
+            alert("Login successful!");
+            window.location.href = "welcome.html"; // Replace with the actual page you want to redirect to
+            return false;
+        }
+    </script>
+</body>
+</html>
